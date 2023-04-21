@@ -1,4 +1,7 @@
 const express = require('express');
+
+const db = require('./config/mongoose');
+const Chat = require('./models/chat');
 const app = express();
 const port = 8000;
 
