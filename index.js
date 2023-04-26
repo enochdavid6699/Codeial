@@ -1,16 +1,28 @@
+//Setup Express Server
 const express = require('express');
-
-const db = require('./config/mongoose');
-const Chat = require('./models/chat');
 const app = express();
 const port = 8000;
 
-//use exxpress router
+//Setup Layouts
+const expressLayouts = require('express-ejs-layouts');
+
+app.use(express.static('./assets'));
+
+app.use(expressLayouts);
+
+//Extract styles and scripts from subpages to the alyout
+app.set('layout extractStyles' , true);
+app.set('layout extractScripts' , true);
+
+//Setup Express Router
 app.use( '/' , require('./routes/index' ));
 
+//Setup Ejs
 app.set( 'view engine' , 'ejs' );
 app.set('views' , './views' );
 
+
+//Check if Server is working
 app.listen( port , function(err){
     if(err){
         console.log(`Error in running server: ${err} `);
