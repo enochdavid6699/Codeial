@@ -3,6 +3,12 @@ const express = require('express');
 const app = express();
 const port = 8000;
 
+const cookieParser = require('cookie-parser');
+
+app.use(express.urlencoded());
+
+app.use(cookieParser());
+
 //Setup Layouts
 const expressLayouts = require('express-ejs-layouts');
 

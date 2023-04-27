@@ -5,7 +5,7 @@ const usersController = require('../controller/users_controller');
 router.get('/profile' , usersController.profile);
 router.get('/sign-up' , usersController.signUp);
 router.get('/sign-in' , usersController.signIn);
-router.get('/create' , usersController.create);
-router.get('/create-session' , usersController.createSession);
+router.post('/create' , usersController.create);
+// router.get('/create-session' , usersController.createSession);
 
-module.exports=router;
+module.exports=router; 
