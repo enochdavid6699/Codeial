@@ -2,14 +2,17 @@
 const express = require('express');
 const app = express();
 const port = 8000;
+
 //Setup Layouts
 const expressLayouts = require('express-ejs-layouts');
 
 //Setup DB
 const db = require('./config/mongoose');
 
+//Set Static Folder
 app.use(express.static('./assets'));
 
+//Here we are using the Layout
 app.use(expressLayouts);
 
 //Extract styles and scripts from subpages to the alyout
