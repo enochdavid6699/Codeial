@@ -1,15 +1,24 @@
 
 const User = require('../models/user');
 
-module.exports.profile = function( req , res ){
+module.exports.profile = async function( req , res ){
+
+    // let user = await User.findById(res.locals.user._id);
+    // console.log(res.locals.user);
+
     return res.render( 'user_profile' , {
         title: "Home",
-        user: user
+        // user:user
     });
 }
 
 //Render the Sign-Up page
 module.exports.signUp = function( req , res ){
+
+    if(req.isAuthenticated()){
+        return res.redirect('/users/profile');
+    }
+
     return res.render( 'user_sign_up' , {
         title: "Codeial | Sign Up"
     });
@@ -17,6 +26,11 @@ module.exports.signUp = function( req , res ){
 
 //Render the Sign-In Page
 module.exports.signIn = function( req , res ){
+    
+    if(req.isAuthenticated()){
+        return res.redirect('/users/profile');
+    }
+
     return res.render( 'user_sign_in' , {
         title: "Codeial | Sign In"
     });
@@ -47,4 +61,23 @@ module.exports.create = async function( req , res ){
 //Sign In and create a session for User
 module.exports.createSession = function( req , res ){
     return res.redirect('/');
+}
+
+//Sign Out Function
+module.exports.signOut = function(req , res){
+    //Destroy Session
+    //Passport self made function
+
+    req.logout(function(err) {
+        if (err) {
+          return next(err);
+        }
+        req.session.destroy(function(err) {
+          if (err) {
+            return next(err);
+          }
+          // Redirect the user to the login page after logout
+          return res.redirect('/');
+        });
+      });
 }
