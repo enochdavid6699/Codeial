@@ -5,6 +5,7 @@ const port = 8000;
 
 const cookieParser = require('cookie-parser');
 
+//URL Encoder
 app.use(express.urlencoded());
 
 app.use(cookieParser());
@@ -14,6 +15,11 @@ const expressLayouts = require('express-ejs-layouts');
 
 //Setup DB
 const db = require('./config/mongoose');
+
+//Used for session cookie
+const session = require('express-session');
+const passport = require('passport');
+const passportlocal = require('./config/passport-local-strategy');
 
 //Set Static Folder
 app.use(express.static('./assets'));
@@ -25,13 +31,29 @@ app.use(expressLayouts);
 app.set('layout extractStyles' , true);
 app.set('layout extractScripts' , true);
 
-//Setup Express Router
-app.use( '/' , require('./routes/index' ));
-
 //Setup Ejs
 app.set( 'view engine' , 'ejs' );
 app.set('views' , './views' );
 
+//
+app.use(session({
+    name:'codeial',
+    //TODO - change the secret before deployment
+    secret:'blahsomething',
+    saveUninitialized:false,
+    resave:false,
+    cookie:{
+        maxAge:(1000*60*100)
+    }
+}));
+
+app.use(passport.initialize());
+app.use(passport.session());
+
+app.use(passport.setAuthenticatedUser);
+
+//Setup Express Router
+app.use( '/' , require('./routes/index' ));
 
 //Check if Server is working
 app.listen( port , function(err){

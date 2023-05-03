@@ -3,7 +3,8 @@ const User = require('../models/user');
 
 module.exports.profile = function( req , res ){
     return res.render( 'user_profile' , {
-        title: "Home"
+        title: "Home",
+        user: user
     });
 }
 
@@ -45,5 +46,5 @@ module.exports.create = async function( req , res ){
 
 //Sign In and create a session for User
 module.exports.createSession = function( req , res ){
-    //TODO Later
+    return res.redirect('/');
 }
