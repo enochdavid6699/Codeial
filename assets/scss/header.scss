@@ -1,11 +1,11 @@
 
 header{
     display: flex;
-    background-color: rgb(38, 38, 182);
+    background-color: rgb(67, 105, 255);
     height: 50px;
     
     h1{
-        width: 90%;
+        width: 80%;
         margin-left: 10%;
         text-align: center;
         color: white;
@@ -17,11 +17,10 @@ header{
         margin-top: 12px;
         margin-right: 5px;
         margin-left: 3px;
-        text-align: right; 
-        width: 80px;
-        height: 10px; 
+        text-align: right;
+        width: 80px;  
         a{
-            font-size: larger;
+            font-size: large;
             color: white;   
             text-decoration: none;
             transition: color 0.2s ease-in-out;
