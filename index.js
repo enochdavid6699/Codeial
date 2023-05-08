@@ -22,6 +22,19 @@ const passport = require('passport');
 const passportlocal = require('./config/passport-local-strategy');
 const MongoStore = require('connect-mongo');
 
+//SASS
+const sassMiddleware = require('node-sass-middleware');
+
+app.use(sassMiddleware(
+    {
+        src: './assets/scss',
+        dest: './assets/css',
+        debug: true,
+        outputStyle: 'extended',
+        prefix: '/css'
+    }
+));
+
 //Set Static Folder
 app.use(express.static('./assets'));
 
