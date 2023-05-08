@@ -1,0 +1,14 @@
+footer {
+    color: white;
+    display: flex;
+    justify-content: center; /* center items horizontally */
+    align-items: center; /* center items vertically */
+    height: 50px;
+    background-color: rgb(38, 38, 182);
+    font-size: larger;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+  }
+  

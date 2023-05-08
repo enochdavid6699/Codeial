@@ -1,0 +1,27 @@
+header {
+  display: flex;
+  background-color: #2626b6;
+  height: 50px; }
+  header h1 {
+    width: 90%;
+    margin-left: 10%;
+    text-align: center;
+    color: white;
+    margin-top: 5px; }
+  header li {
+    display: inline-block;
+    margin: 5px;
+    margin-top: 12px;
+    margin-right: 5px;
+    margin-left: 3px;
+    text-align: right;
+    width: 80px;
+    height: 10px; }
+    header li a {
+      font-size: larger;
+      color: white;
+      text-decoration: none;
+      transition: color 0.2s ease-in-out; }
+  header li a:hover {
+    color: #efc16d;
+    /* change color on hover */ }
