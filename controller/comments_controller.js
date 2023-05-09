@@ -23,3 +23,36 @@ module.exports.create = async function(req , res){
         console.log(error);
     }
 }
+
+module.exports.destroy = async function(req , res){
+
+    try {
+        let comment = await Comment.findById(req.params.id);
+
+        // console.log(req.user._id , '=======' ,comment.post.user);
+
+        if(comment && comment.user == req.user.id){
+
+            //Store the id of the post the comment belonged to before deleting the comment
+            let postId = comment.post;
+
+             // Delete the comment
+            await Comment.deleteOne({ _id: comment._id });
+
+            // Now delete the comment from the Post Array
+            let post = await Post.findByIdAndUpdate(
+            postId,
+            { $pull: { comments: comment._id } },
+            { new: true }
+            );
+            
+            return res.redirect('back');
+            
+        }else{
+            return res.redirect('back');
+        }
+
+    } catch (error) {
+        console.log(error);
+    }
+}
