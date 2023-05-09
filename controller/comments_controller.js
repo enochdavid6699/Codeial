@@ -29,12 +29,14 @@ module.exports.destroy = async function(req , res){
     try {
         let comment = await Comment.findById(req.params.id);
 
-        // console.log(req.user._id , '=======' ,comment.post.user);
+        //Store the id of the post the comment belonged to before deleting the comment
+        let postId = comment.post;
 
-        if(comment && comment.user == req.user.id){
+        let postOwner = await Post.findById(postId);
 
-            //Store the id of the post the comment belonged to before deleting the comment
-            let postId = comment.post;
+        console.log(req.user._id , '=======' ,postOwner.user.id);
+
+        if(comment && (comment.user == req.user.id || req.user.id == postOwner.user._id)){
 
              // Delete the comment
             await Comment.deleteOne({ _id: comment._id });
