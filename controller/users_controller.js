@@ -3,13 +3,18 @@ const User = require('../models/user');
 
 module.exports.profile = async function( req , res ){
 
-    // let user = await User.findById(res.locals.user._id);
-    // console.log(res.locals.user);
+    try {
+        let user = await User.findById(req.params.id);
 
-    return res.render( 'user_profile' , {
-        title: "Home",
-        // user:user
+        return res.render( 'user_profile' , {
+            title: "Home",
+            profile_user: user
     });
+        
+    } catch (error) {
+        console.log(error);
+    }
+
 }
 
 //Render the Sign-Up page
