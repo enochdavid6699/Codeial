@@ -6,8 +6,10 @@ header {
     width: 80%;
     margin-left: 10%;
     text-align: center;
-    color: white;
     margin-top: 5px; }
+    header h1 a {
+      color: white;
+      text-decoration: none; }
   header li {
     display: inline-block;
     margin: 5px;
