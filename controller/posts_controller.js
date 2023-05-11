@@ -8,6 +8,9 @@ module.exports.create = function(req , res){
             content: req.body.content,
             user: req.user._id
         })
+
+        //Giving flash message
+        req.flash('success' , 'Post has been created');
     
         return res.redirect('back');
 
@@ -29,6 +32,10 @@ module.exports.destroy = async function(req , res){
 
             //Delete the comments
             await Comment.deleteMany({post: req.params.id});
+
+            //Giving flash message
+            req.flash('success' , 'Post has been Deleted');
+
             return res.redirect('back');
         }else{
             return res.redirect('back');

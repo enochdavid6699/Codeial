@@ -16,6 +16,10 @@ module.exports.create = async function(req , res){
             //Here we are directly pushing the comment to the Array of comments of a post
             post.comments.push(comment);
             post.save(); //Whenever we update something we need to save it
+
+            //Giving flash message
+            req.flash('success' , 'Comment Added Successfully');
+
             return res.redirect('/');
             
         }
@@ -34,7 +38,7 @@ module.exports.destroy = async function(req , res){
 
         let postOwner = await Post.findById(postId);
 
-        console.log(req.user._id , '=======' ,postOwner.user.id);
+        // console.log(req.user._id , '=======' ,postOwner.user.id);
 
         if(comment && (comment.user == req.user.id || req.user.id == postOwner.user._id)){
 
@@ -47,6 +51,9 @@ module.exports.destroy = async function(req , res){
             { $pull: { comments: comment._id } },
             { new: true }
             );
+
+            //Giving flash message
+            req.flash('success' , 'Comment Deleted Successfully');
             
             return res.redirect('back');
             
