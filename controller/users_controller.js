@@ -79,24 +79,22 @@ module.exports.create = async function( req , res ){
 //Sign In and create a session for User
 module.exports.createSession = function( req , res ){
 
+    req.flash('success' , 'Logged In Successfully');
+    
     return res.redirect('/');
 }
+  
 
 //Sign Out Function
 module.exports.signOut = function(req , res){
-    //Destroy Session
-    //Passport self made function
-
     req.logout(function(err) {
         if (err) {
-          return next(err);
+            // Handle error
         }
-        req.session.destroy(function(err) {
-          if (err) {
-            return next(err);
-          }
-          // Redirect the user to the login page after logout
-          return res.redirect('/');
-        });
-      });
+
+        req.flash('success' , 'You have logged out');
+
+        // Redirect the user to the login page after logout
+        return res.redirect('/');
+    });
 }
