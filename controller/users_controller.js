@@ -23,6 +23,9 @@ module.exports.update = async function(req , res){
     if(req.user.id == req.params.id){
         //This will update the users information
         let user = await User.findByIdAndUpdate(req.params.id , req.body);
+
+        //Giving flash message
+        req.flash('success' , 'Profile Updated Successfully');
         
         return res.redirect('back');
     }
@@ -65,12 +68,20 @@ module.exports.create = async function( req , res ){
 
         if(!user){
             User.create(req.body); 
+
+            //Giving flash message
+            req.flash('success' , 'Sign-Up Successfull');
+
             return res.redirect('/users/sign-in');
         }else{
             return res.redirect('back');
         }
         
     } catch (error) {
+
+        //Giving flash message
+        req.flash('error' , 'Error in Signing-Up');
+
         console.log('Error in finding User in Singing Up');
     }      
 

@@ -24,6 +24,10 @@ module.exports.create = async function(req , res){
             
         }
     } catch (error) {
+
+        //Giving flash message
+        req.flash('error' , 'Error in Adding comment');
+
         console.log(error);
     }
 }
@@ -62,6 +66,10 @@ module.exports.destroy = async function(req , res){
         }
 
     } catch (error) {
+
+        //Giving flash message
+        req.flash('error' , 'Error in Deleting comment');
+
         console.log(error);
     }
 }

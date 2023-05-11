@@ -15,6 +15,10 @@ module.exports.create = function(req , res){
         return res.redirect('back');
 
     } catch (error) {
+
+        //Giving flash message
+        req.flash('error' , 'Error in Adding Post');
+
         console.log(error);
     }
 }
@@ -42,6 +46,10 @@ module.exports.destroy = async function(req , res){
         }
 
     } catch (error) {
+
+        //Giving flash message
+        req.flash('error' , 'Error in Deleting Post');
+
         console.log(error);
     }
 
