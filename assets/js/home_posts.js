@@ -14,8 +14,22 @@
                     let newPost = newPostDom(data.data.post);
                     $('#post-list-container>ul').prepend(newPost);
                     deletePost($(' .delete-post-button' , newPost));
+                    new Noty({
+                        theme: 'relax',
+                        text: "Post Created",
+                        type: 'success',
+                        layout:'topRight',
+                        timeout: 2000
+                    }).show();
                 }, error: function(error){
                     console.log(error.responseText);
+                    new Noty({
+                        theme: 'relax',
+                        text: "Cannot be Posted",
+                        type: 'error',
+                        layout:'topRight',
+                        timeout: 2000
+                    }).show();
                 }
             })
         });
@@ -69,13 +83,39 @@
                     $(deleteLink).closest('li').remove(); // Removes the parent <li> element of the delete link
                     // Optionally, provide feedback to the user
                     console.log("Post deleted successfully.");
+                    new Noty({
+                        theme: 'relax',
+                        text: "Post Deleted",
+                        type: 'success',
+                        layout:'topRight',
+                        timeout: 2000
+                    }).show();
                 },error: function(error){
                     console.log(error.responseText);
+                    new Noty({
+                        theme: 'relax',
+                        text: "Cannot be Posted",
+                        type: 'error',
+                        layout:'topRight',
+                        timeout: 2000
+                    }).show();
                 }
             })
         })
     } 
+
+    let convertPostAllPostsToAjax = function(){
+        $('#post-list-container>ul>li').each(function(){
+            let self = $(this)
+            deletePost($( '.delete-post-button' , self))
+        })
+
+        // get the post's id by splitting the id attribute
+        // let postId = self.prop('id').split("-")[1]
+        // new PostComments(postId);
+    }
     
+    convertPostAllPostsToAjax();
     createPost();
 }
 
