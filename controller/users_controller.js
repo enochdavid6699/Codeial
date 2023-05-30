@@ -1,5 +1,8 @@
-
 const User = require('../models/user');
+
+//This is to acces for the deleting of the Avatar
+const fs = require('fs');
+const path = require('path');
 
 //Profile Page
 module.exports.profile = async function( req , res ){
@@ -22,7 +25,30 @@ module.exports.profile = async function( req , res ){
 module.exports.update = async function(req , res){
     if(req.user.id == req.params.id){
         //This will update the users information
-        let user = await User.findByIdAndUpdate(req.params.id , req.body);
+        let user = await User.findById(req.params.id);
+
+        User.uploadedAvatar(req , res , function(err){
+            if(err){
+                console.log('*****Multer Error:' , err);
+            }
+            
+            user.name = req.body.name;
+            user.email = req.body.email;
+
+            if(req.file){
+
+                //Checking if the user already has an Avatar
+                if(user.avatar){
+                    //Deleting the Avatar
+                    fs.unlinkSync(path.join(__dirname , '..' , user.avatar));
+                }
+
+                //This is saving the path of the uploaded file into the avatar field in the user
+                user.avatar = User.avatarPath + '/' + req.file.filename;
+            }
+
+            user.save();
+        })
 
         //Giving flash message
         req.flash('success' , 'Profile Updated Successfully');

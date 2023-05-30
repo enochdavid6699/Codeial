@@ -42,6 +42,9 @@ app.use(sassMiddleware(
 //Set Static Folder
 app.use(express.static('./assets'));
 
+//For Uploading and showing File/Image 
+app.use('/uploads' , express.static(__dirname + '/uploads'));
+
 //Here we are using the Layout
 app.use(expressLayouts);
 
