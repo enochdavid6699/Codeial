@@ -1,4 +1,142 @@
-body{
+/* styles.css */
+
+/* Style for the post container */
+li {
+    border: 1px solid #ddd;
+    margin-bottom: 10px;
+    padding: 10px;
+}
+
+/* Style for the post content */
+p {
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+/* Style for the post author */
+small {
+    font-size: 12px;
+    color: #666;
+}
+
+/* Style for the delete post and delete comment buttons */
+a.delete-post-button,
+a.delete-comment-button {
+    color: #ff0000;
+    text-decoration: none;
+    margin-left: 10px;
+    padding: 2px 6px; /* Add padding to buttons */
+}
+
+/* Style for the comment form */
+form {
+    margin-top: 10px;
+}
+
+input[type="text"] {
+    width: 100%;
+    padding: 5px;
+    font-size: 14px;
+}
+
+input[type="submit"] {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 8px 12px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+input[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+/* Style for the comment list */
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+/* Style for each comment */
+li {
+    border-bottom: 1px solid #ddd;
+    padding: 10px;
+}
+
+/* Style for comment content */
+p.comment-content {
+    font-size: 14px;
+}
+
+/* Style for comment author */
+small.comment-author {
+    font-size: 12px;
+    color: #666;
+}
+
+/* Style for the comment delete button */
+a.delete-comment-button {
+    color: #ff0000;
+    text-decoration: none;
+    margin-left: 10px;
+}
+
+/* home.css */
+
+/* Global styles */
+body {
+    font-family: Arial, sans-serif;
     margin: 0;
-    // text-align: center;
+    padding: 0;
+}
+
+h1 {
+    text-align: center;
+    margin: 20px 0;
+}
+
+#home-container {
+    display: flex;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Styles for Feed Posts Section */
+#feed-posts {
+    width: 70%;
+}
+
+#new-post-form {
+    margin-bottom: 20px;
+}
+
+textarea {
+    width: 100%;
+    padding: 10px;
+    font-size: 14px;
+}
+
+/* Styles for User Friends Section */
+#user-friends {
+    width: 25%;
+}
+
+h4 {
+    margin-bottom: 10px;
+}
+
+p {
+    margin: 5px 0;
+}
+
+a {
+    text-decoration: none;
+    color: #007bff;
+}
+
+a:hover {
+    text-decoration: underline;
 }
